@@ -1,0 +1,49 @@
+.logo{
+    border-radius: 5px;
+
+}
+.cart {
+    background-color: red;
+    border-radius: 500px;
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+.navigation-bar {
+    width: 250px;
+}
+
+.events a {
+    color: black;
+}
+
+.events a:hover {
+    text-decoration: none;
+}
+
+.events a img:hover {
+    opacity: 0.7;
+    width: 260px;
+    height: 160px;
+}
+
+
+/* --------------------------------Login---------------------------- */
+
+.center-align {
+    margin: 130px auto;
+}
+
+.btn-margin {
+    margin-right: 162px;
+}
+
+
+/* ------------------------------------Register----------------------------- */
+
+.btn-margin-register {
+    margin-right: 196px;
+}

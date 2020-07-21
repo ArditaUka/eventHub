@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container-fluid">
+     
+        <div class="row dashboard-header mt-3">
+            <div class="col-sm">
+            <a href="/">
+                <img src="{% static "eventhub.png" %}" alt="Our logo" width="200" class="logo ml-5">
+            </a>
+            </div>
+            <div class="col-sm text-right sign-in">
+                <a href="/display_login">Sign in</a>
+            </div>
+            <div class="col-sm-1 text-right pl-0 heade-minicraft top-nav-shadow">
+                <a href="/cart">
+                <img src="{% static "cart_icon.png" %}" alt="Cart Icon" width="30">
+                </a>
+                <div class="cart">
+                    {{request.session.cart}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="navigation-bar ml-2">
+                <h1 class="mt-5">Categories</h1>
+                    <nav class="navbar navbar-light bg-light">
+                        <span class="navbar-brand mb-0 h1">Concerts</span>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Pop" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Pop</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Rock" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Rock</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Country" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Country</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Hip-Hop" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Hip-Hop</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "RnB" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>RnB</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Festivals" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Festivals</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <span class="navbar-brand mb-0 h1">Sports</span>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "NBA" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>NBA</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "NHL" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>NHL</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "NCAA Basketball" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>NCAA Basketball</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "MLB" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>MLB</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Motorsports" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Motorsports</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <span class="navbar-brand mb-0 h1">Theatre</span>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Musicals" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Musicals</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Plays" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Plays</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Comedy" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Comedy</a>
+                    </nav>
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" {% for event in events  %}{% if event.category == "Family" %}href="/display_category/{{event.category}}"{% endif %}{% endfor %}>Family</a>
+                    </nav>
+            </div>
+            <div class="container mt-5">
+                <div class="row mt-5">
+                    
+                        {% for event in category_events %}
+                        <div class="col-sm-4  mb-5 events">
+                        <a href="#">
+                        <figure>
+                            <img src="{% static event.category %}{{".jpg"}}" alt="Event Image" width="250" height="150">
+                            
+                            <figcaption>
+                                {{event.name}}<br>
+                                {{event.location}}<br>  
+                                {{event.start_date}}
+                            </figcaption>
+                        </figure>
+                        </div>
+                        </a>
+                        {% endfor %}
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

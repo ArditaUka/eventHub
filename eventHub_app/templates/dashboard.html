@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row dashboard-header mt-3">
+            <div class="col-sm">
+                <img src="{% static "eventhub.png" %}" alt="Our logo" width="200" class="logo ml-5">
+            </div>
+            <div class="col-sm text-right sign-in mr-5">
+                <a href="/logout">Sign out</a>
+            </div>
+        </div>
+        <h2 class="mt-5 ml-5">Your created tickets</h2>
+        <div class="container-fluid mt-5 ml-5">
+                <div class="row mt-6">
+                    
+                        {% for event in my_events %}
+                        <div class="col-sm-3  mb-5 events">
+                        <a href="#">
+                        <figure>
+                            <img src="{% static event.category %}{{".jpg"}}" alt="Event Image" width="250" height="150">
+                            <figcaption>
+                                {{event.name}}<br>
+                                {{event.location}}<br>  
+                                {{event.start_date}}
+                            </figcaption>
+                        </figure>
+                        </div>
+                        </a>
+                        {% endfor %}
+                </div>
+                
+                </div>
+        </div>
+        <div class="ml-4">
+            <a class="btn btn-primary btn-lg ml-5" href="/new_event" role="button">Create Event</a>
+        </div>
+        <h2 class="mt-5 ml-5">Your orderet tickets</h2>
+        <div class="container-fluid mt-5 ml-5">
+                <div class="row mt-6">
+                    
+                        {% for event in ordered_events %}
+                        <div class="col-sm-3  mb-5 events">
+                        <a href="#">
+                        <figure>
+                            <img src="{% static event.category %}{{".jpg"}}" alt="Event Image" width="250" height="150">
+                            
+                            <figcaption>
+                                {{event.name}}<br>
+                                {{event.location}}<br>  
+                                {{event.start_date}}
+                            </figcaption>
+                        </figure>
+                        </div>
+                        </a>
+                        {% endfor %} 
+                </div>
+                
+                </div>
+        </div>
+    </div>
+</body>
+</html>
