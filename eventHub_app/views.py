@@ -187,3 +187,60 @@ def logout(request):
     request.session.flush()
     
     return redirect('/')
+
+
+def edit(request, event_id):
+    if 'uid' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['uid'])
+    event = Event.objects.get(id=event_id)
+    context = {
+        'event':event,
+        'user':user
+    }
+    return render(request, 'edit.html', context)
+
+def update(request,event_id):
+    errors = Event.objects.validator(request.POST)
+
+    if len(errors)>0:
+        for key, value in errors.items():
+            messages.error(request,value)
+        
+        return redirect(f'/edit/{event_id}')
+    else:
+        event = Event.objects.get(id=event_id)
+        event.name = request.POST['name']
+        event.location = request.POST['location']
+        event.start_date= request.POST['start_date']
+        event.category = request.POST["category"]
+        event.tickets = request.POST['tickets']
+        event.price = request.POST['price']
+        event.about = request.POST['about']
+        
+        if len(category)<1 or category=="Choose...":
+            messages.error(request,"Your event must belong to a category")
+            return redirect(f'/edit/{event_id}')
+        
+        else:
+            event.save()
+        return redirect('/dashboard')
+    # if request.method == "POST":
+    #     errors = Event.objects.validator(request.POST)
+    #     if len(errors)>0:
+    #         for key, value in errors.items():
+    #             messages.error(request, value)
+    #             return redirect(f'/jobs/edit/{job_id}')
+    #     job = Job.objects.get(id=job_id)
+    #     job.title=request.POST['title']
+    #     job.description=request.POST['description']
+    #     job.location=request.POST['location']
+    #     job.save()
+    # return redirect('/dashboard')
+
+def delete(request, event_id):
+    user = User.objects.get(id=request.session['uid'])
+    event = event.objects.get(id=event_id)
+    event.delete()
+
+    return redirect('/dashboard')

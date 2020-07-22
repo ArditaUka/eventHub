@@ -18,4 +18,6 @@ urlpatterns = [
     path('cart', views.cart),
     path('oneCart/<int:event_id>', views.one_cart),
     path('buy_ticket/<int:event_id>', views.buyTicket),
+    path('edit/<int:event_id>', views.edit),
+    path('delete/<int:event_id>', views.delete)
 ]

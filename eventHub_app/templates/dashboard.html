@@ -24,7 +24,7 @@
                     
                         {% for event in my_events %}
                         <div class="col-sm-3  mb-5 events">
-                        <a href="#">
+                        <a href="/edit/{{event.id}}">
                         <figure>
                             <img src="{% static event.category %}{{".jpg"}}" alt="Event Image" width="250" height="150">
                             <figcaption>
@@ -49,7 +49,7 @@
                     
                         {% for event in ordered_events %}
                         <div class="col-sm-3  mb-5 events">
-                        <a href="#">
+                        <a href="/edit/{{event.id}}">
                         <figure>
                             <img src="{% static event.category %}{{".jpg"}}" alt="Event Image" width="250" height="150">
                             
